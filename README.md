@@ -14,6 +14,7 @@ This is the most important part of Home Assistant!  Remote control and voice com
 
 I run my home assistant instance on a [HP ProDesk 600 G1 Desktop Mini PC](https://support.hp.com/us-en/document/c04240180#AbT0) with i5 4590T low power processor. I am running [VMware ESXi](https://my.vmware.com/en/web/vmware/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/6_7) to allow multiple virtual machines on the same hardware. The base operating system of the VM is [HomeAssistant Operating System](https://github.com/home-assistant/operating-system) and it runs the [Home Assistant ](https://www.home-assistant.io/hassio/installation/) core. It also runs the following add-ons: 
 
+* [ESPHome](https://github.com/esphome/hassio)
 * [Backup to Google Drive](https://github.com/sabeechen/hassio-google-drive-backup)
 * [Mosquitto MQTT broker](https://www.home-assistant.io/addons/mosquitto/)
 * [Network UPS Tools](https://github.com/hassio-addons/addon-nut)
@@ -23,7 +24,7 @@ I run my home assistant instance on a [HP ProDesk 600 G1 Desktop Mini PC](https:
 * [Unifi Controller](https://github.com/hassio-addons/addon-unifi)
 * [VScode](https://github.com/hassio-addons/addon-vscode)
 
-I'm currently running [Home Assistant](https://home-assistant.io) version __0.116.2__.
+I'm currently running [Home Assistant](https://home-assistant.io) version __2020.12.02__.
 
 # Connected Devices:
 
@@ -44,7 +45,7 @@ I'm currently running [Home Assistant](https://home-assistant.io) version __0.11
 * [Lifx Mini Color Bulb](https://www.lifx.com/collections/lamps-and-pendants/products/lifx-mini-color)*
 * [Wifi RGBW LED Strip](https://www.amazon.com/gp/product/B07QBKRCW1)*
 * [Reolink E1 Zoom](https://reolink.com/product/e1-zoom/)*
-* [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)* with 2 DS18B20 and 1 DHT22 sensors connected
+* [ESP8266 NodeMCU](https://www.amazon.com/dp/B081CSJV2V/?coliid=I333976UB3YDCV&colid=3P6XXCKA17F5L&psc=1&ref_=lv_ov_lig_dp_it)* with 2 DS18B20 and 1 DHT22 sensors connected
 
 ### Zwave Devices
 * [Mono Price Z-wave Door Tilt Sensor ](https://www.monoprice.com/product?p_id=11987)
@@ -55,6 +56,7 @@ I'm currently running [Home Assistant](https://home-assistant.io) version __0.11
 * [Aeotec Home Energy Meter Gen2 ](https://aeotec.com/z-wave-home-energy-measure/)
 * [Zooz Z-wave Dimmer Switches ](https://www.amazon.com/Z-Wave-Switch-Existing-Switches-Add-Ons/dp/B07K37BNMC?th=1)
 * [GoControl WA00Z-1 Z-Wave Scene-Controller Wall Switch](https://www.amazon.com/gp/product/B01BKWG9XS/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
+* [ZOOZ Z-Wave Plus 4-in-1 Sensor](https://www.amazon.com/dp/B01AKSO80O/?coliid=I3VY033AHUSJ3Z&colid=3P6XXCKA17F5L&psc=1&ref_=lv_ov_lig_dp_it)
 
 ### Hardwired Devices
 * [Cyberpower CP1500PFCLCD UPS ](https://www.amazon.com/CyberPower-CP1500PFCLCD-Sinewave-Outlets-Mini-Tower/dp/B00429N19W) used to detect power outages and keep network and HA running in a power outage.
@@ -106,15 +108,10 @@ I'm currently running [Home Assistant](https://home-assistant.io) version __0.11
   <img src="https://raw.githubusercontent.com/SilvrrGIT/HomeAssistant/master/www/automations.png">
 </p>
 
-## Cameras
-<p align="center">
-  <img src="https://raw.githubusercontent.com/SilvrrGIT/HomeAssistant/master/www/cameras.png">
-</p>
-
 # UI Based Integrations:
 The following integrations are setup in the User Interface (UI) and may be a missing peice as to the full configuration of my HA setup. 
 
-* [Internet Printing Protocol (IPP)](https://www.home-assistant.io/integrations/ipp/)
+* [ESPHome](https://www.home-assistant.io/integrations/esphome/)
 * [iOS](https://www.home-assistant.io/integrations/ios/)
 * [LIFX](https://www.home-assistant.io/integrations/lifx/)
 * [MQTT](https://www.home-assistant.io/integrations/mqtt/)
@@ -127,8 +124,8 @@ The following integrations are setup in the User Interface (UI) and may be a mis
 
 # A Few Stats On my Setup:
 | Tracked Devices | Lights | Helpers | Switches | Automations | Scripts | Sensors | Zwave Devices |
-|:---------------:|:------:|:-------:|:--------:|:-----------:|:-------:|:-------:|:-------------:|
-|63               |22      |9        |26        |74           |12       |136      |13             | 
+|:---------------:|:------:|:-------:|:--------:|:-----------:|:------:|:-------:|:-------------:|
+|51               |14      |9        |19        |75           |8       |117      |15             | 
 
 # Themes
 I created a repository with the theme(s) I use and also a version of the default theme.  It is structured to help you identify the base variables available in Home Assistant to aide in tweaking a theme or creating a new one.  The repository is [HERE](https://github.com/SilvrrGIT/Home-Assistant-Themes)
