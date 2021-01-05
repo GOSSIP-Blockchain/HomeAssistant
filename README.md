@@ -98,11 +98,6 @@ I'm currently running [Home Assistant](https://home-assistant.io) version __2020
   <img src="https://raw.githubusercontent.com/SilvrrGIT/HomeAssistant/master/www/ha.png">
 </p>
 
-## Network Status
-<p align="center">
-  <img src="https://raw.githubusercontent.com/SilvrrGIT/HomeAssistant/master/www/network.png">
-</p>
-
 ## Automations
 <p align="center">
   <img src="https://raw.githubusercontent.com/SilvrrGIT/HomeAssistant/master/www/automations.png">
