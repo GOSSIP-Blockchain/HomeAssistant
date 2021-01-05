@@ -33,6 +33,9 @@
           - device_tracker.lifx_mini_57057e
           - device_tracker.esp_a0d647
           - device_tracker.e1
+          - device_tracker.unifi_controller
+          - device_tracker.esp_297589
+          - device_tracker.unifi_84_cc_a8_b2_86_e5_default
         from: 'home'
         to: 'not_home'
         for:
@@ -91,12 +94,15 @@
           - zwave.zooz_zen27_s2_dimmer_wall_switch_4
           - zwave.linear_nortek_security_control_llc_wa00z_1_scene_switch
           - zwave.vision_security_zg8101_garage_door_detector
+          - zwave.zooz_zse40_4_in_1_sensor
+          - zwave.zooz_zse40_4_in_1_sensor_2
         to: 'dead'
     action:
       service: notify.home_assistant
       data_template:
         title: "Home Assistant Zwave Device is dead"
         message: "{{ trigger.to_state.attributes.friendly_name }} is dead."
+
 #########################################################
 #                                                       #
 #            END OF CONFIGURATION FILE                  #

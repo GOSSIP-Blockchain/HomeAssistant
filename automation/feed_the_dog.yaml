@@ -71,7 +71,7 @@
         entity_id: automation.feed_the_dog_morning
       - service: homeassistant.turn_off
         entity_id: input_boolean.feeddog
-      - service_template: "{%- if is_state('switch.basic1', 'on') -%} script.normallight {%- else -%} script.returntonormal {%- endif %}"
+      - service: "{%- if is_state('switch.basic1', 'on') -%} script.normallight {%- else -%} script.returntonormal {%- endif %}"
 
 #########################################################
 #                                                       #
@@ -102,7 +102,7 @@
         entity_id: automation.feed_the_dog_evening
       - service: homeassistant.turn_off
         entity_id: input_boolean.feeddog
-      - service_template: "{%- if is_state('switch.basic1', 'on') -%} script.normallight {%- else -%} script.returntonormal {%- endif %}"
+      - service: "{%- if is_state('switch.basic1', 'on') -%} script.normallight {%- else -%} script.returntonormal {%- endif %}"
 
 #########################################################
 #                                                       #

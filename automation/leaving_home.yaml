@@ -29,15 +29,16 @@
         - switch.kuled2
         - switch.kuled3
         - switch.kuled4
-        - switch.basic1
-    - service: light.turn_off
-      entity_id:
+        - switch.kuled5
+        - light.bedroom_lights
         - light.zooz_zen27_s2_dimmer_wall_switch_level
         - light.zooz_zen27_s2_dimmer_wall_switch_level_2
         - light.zooz_zen27_s2_dimmer_wall_switch_level_3
         - light.zooz_zen27_s2_dimmer_wall_switch_level_4
-        - light.yeelight3
-        - light.yeelight4
+        - light.notification_light
+        - light.mikey_s_bed_lights
+        - light.led_strip_light2
+        - switch.basic1
 
 ########################################################
 #                                                      #

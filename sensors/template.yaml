@@ -10,6 +10,11 @@
   - platform: template
     sensors:
 
+      average_wifi:
+        unit_of_measurement: "%"
+        value_template: >-
+          {{ ((float(states.sensor.basic1_signal.state) + float(states.sensor.pow1_signal.state) + float(states.sensor.pow2_signal.state) + float(states.sensor.th161_signal.state)+ float(states.sensor.kuled1_signal.state)+ float(states.sensor.kuled2_signal.state)+ float(states.sensor.kuled3_signal.state)+ float(states.sensor.kuled4_signal.state)+ float(states.sensor.kuled5_signal.state)+ float(states.sensor.kuled6_signal.state)) / 10 ) | round(0) }}
+
       operatingstate:
         value_template: "{{ state_attr('climate.thermostat', 'hvac_action') }}"
 
@@ -18,42 +23,34 @@
         value_template:  '{{states("sensor.ups_load")|int*9}}'
 
       sensor_count:
-        entity_id: []
         friendly_name: 'Number of Sensors'
         value_template: '{{ states.sensor | count }}'
 
       automation_count:
-        entity_id: []
         friendly_name: 'Number of Automations'
         value_template: '{{ states.automation | count }}'
 
       script_count:
-        entity_id: []
         friendly_name: 'Number of Scripts'
         value_template: '{{ states.script | count }}'
 
       switch_count:
-        entity_id: []
         friendly_name: 'Number of Switches'
         value_template: '{{ states.switch | count }}'
 
       binary_sensor_count:
-        entity_id: []
         friendly_name: 'Number of Binary Sensors'
         value_template: '{{ states.binary_sensor | count }}'
 
       lights_count:
-        entity_id: []
         friendly_name: 'Number of Lights'
         value_template: '{{ states.light | count }}'
 
       tracker_count:
-        entity_id: []
         friendly_name: 'Number of Devices'
         value_template: '{{ states.device_tracker | count }}'
 
       zwave_count:
-        entity_id: []
         friendly_name: 'Zwave Devices'
         value_template: '{{ states.zwave | count }}'
 
@@ -69,6 +66,12 @@
 
       hoursdaylight:
         value_template: "{% set nr = as_timestamp(state_attr('sun.sun','next_rising')) %} {% set ns = as_timestamp(state_attr('sun.sun','next_setting')) %} {% if nr > ns %} {% set nr = nr - 60*60*24 %} {% endif %} {{ (ns - nr)|timestamp_custom('%H:%M',false) }}"
+
+      zooz1motion:
+        value_template: "{%if states.sensor.zooz_zse40_4_in_1_sensor_alarm_level.state == '0' %}Off{% elif states.sensor.zooz_zse40_4_in_1_sensor_alarm_level.state == '255' %}On{% endif %}"
+
+      zooz2motion:
+        value_template: "{%if states.sensor.zooz_zse40_4_in_1_sensor_alarm_level_2.state == '0' %}Off{% elif states.sensor.zooz_zse40_4_in_1_sensor_alarm_level_2.state == '255' %}On{% endif %}"
 
   - platform: moon
 

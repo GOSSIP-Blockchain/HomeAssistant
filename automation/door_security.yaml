@@ -25,6 +25,12 @@
         data:
           title: "Interior Garage Door Opened"
           message: "The Interior Garage Door was opened and Amy and Adam are not home"
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0
       - service: notify.mobile_app_amy_s_iphone
         data:
           title: "Interior Garage Door Opened"
@@ -56,6 +62,12 @@
         data:
           title: "Exterior Garage Door Opened"
           message: "The Exterior Garage Door was opened and Amy and Adam are not home"
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0
       - service: notify.mobile_app_amy_s_iphone
         data:
           title: "Exterior Garage Door Opened"
@@ -87,6 +99,12 @@
         data:
           title: "Front Door Opened"
           message: "The Front Door was opened and Amy and Adam are not home"
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0
       - service: notify.mobile_app_amy_s_iphone
         data:
           title: "Front Door Opened"
@@ -122,6 +140,12 @@
         data:
           title: "Exterior Garage Door Left Open"
           message: "The Exterior Garage Door was left open and Amy and Adam are not home"
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0
       - service: notify.mobile_app_amy_s_iphone
         data:
           title: "Exterior Garage Door Left Open"
@@ -153,6 +177,12 @@
         data:
           title: "Back Door Opened"
           message: "The Back Door was opened and Amy and Adam are not home"
+          data:
+            push:
+              sound:
+                name: default
+                critical: 1
+                volume: 1.0
       - service: notify.mobile_app_amy_s_iphone
         data:
           title: "Back Door Opened"
@@ -170,14 +200,16 @@
       platform: state
       entity_id: sensor.doorbell
     condition:
-      - condition: template
-        value_template: "{{trigger.from_state.state != trigger.to_state.state}}"
-      - condition: template
-        value_template: "{{ states('person.adam') != 'away' }}"
-      - condition: template
-        value_template: "{{ states('person.amy') != 'away' }}"
-      - condition: template
-        value_template: "{{ states('input_boolean.guest') != 'off' }}"
+        condition: or
+        conditions:
+          - condition: template
+            value_template: "{{trigger.from_state.state != trigger.to_state.state}}"
+          - condition: template
+            value_template: "{{ states('person.adam') != 'away' }}"
+          - condition: template
+            value_template: "{{ states('person.amy') != 'away' }}"
+          - condition: template
+            value_template: "{{ states('input_boolean.guest') != 'on' }}"
     action:
       - service: tts.google_translate_say
         entity_id: media_player.family_room_display
@@ -191,34 +223,46 @@
         data:
           title: "Doorbell Pressed"
           message: "The doorbell was pressed"
-      - service_template: >-
-          {%- if is_state('light.notification_light' , 'off') -%}
-            input_boolean.turn_off
-          {%- else -%}
-            input_boolean.turn_on
-          {%- endif -%}
-        entity_id: input_boolean.doorbelllight
-      - service: light.turn_on
-        entity_id: light.notification_light
-        data:
-          effect: 'effect_colorloop'
-      - delay: '00:00:05'
-      - service: light.turn_on
-        entity_id: light.notification_light
-        data:
-          effect: Stop
-      - service_template: >-
-          {%- if is_state('input_boolean.doorbelllight' , 'off') -%}
-            light.turn_off
-          {%- else -%}
-            light.turn_on
-          {%- endif -%}
-        entity_id: light.notification_light
-      - delay: 00:00:01
+      - delay: 00:00:05
       - service: hassio.addon_stdin
         data:
           addon: a0d7b954_ssh
           input: catt -d "Family Room Display" cast_site http://192.168.1.24:8123/lovelace/googlehomehub
+
+#########################################################
+#                                                       #
+#              MOTION WHEN AWAY NOTIFICATION            #
+#                                                       #
+#########################################################
+
+  - alias: "Motion When Away Notification"
+    initial_state: true  
+    trigger:
+      platform: state
+      entity_id:
+        - sensor.zooz1motion
+        - sensor.zooz2motion
+      to: 'On'
+    condition:
+        condition: and
+        conditions:
+          - condition: template
+            value_template: "{{ states('person.adam') != 'home' }}"
+          - condition: template
+            value_template: "{{ states('person.amy') != 'home' }}"
+          - condition: template
+            value_template: "{{ states('input_boolean.guest') != 'on' }}"
+    action:
+      service: notify.mobile_app_adams_iphone
+      data_template:
+        title: "Motion when Away!"
+        message: "{%if trigger.to_state.entity_id == 'sensor.zooz1motion' %}Motion in Bedroom{% elif trigger.to_state.entity_id == 'sensor.zooz2motion' %}Motion in Basement{% endif %}"
+        data:
+          push:
+            sound:
+              name: default
+              critical: 1
+              volume: 1.0
 
 #########################################################
 #                                                       #

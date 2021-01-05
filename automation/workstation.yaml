@@ -1,0 +1,52 @@
+#########################################################
+#                                                       #
+#           TURN ON WORKSTATION IN MORNING              #
+#                                                       #
+#########################################################
+
+  - alias: "Turn on Workstation"
+    initial_state: true
+    trigger:
+      platform: time
+      at: '08:00:00'
+    condition:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: person.adam
+        state: home
+    action:
+      - service: light.turn_on
+        entity_id: light.led_strip_light2
+      - service: switch.turn_on
+        entity_id: switch.pow1
+
+#########################################################
+#                                                       #
+#        FOLLOW BACKLIGHT STATE WITH WORKSTATION        #
+#                                                       #
+#########################################################
+
+  - alias: "Follow Backlight State with Workstation"
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: switch.pow1
+    condition:
+      - condition: state
+        entity_id: person.adam
+        state: home
+    action:
+      - service: "{%- if is_state('switch.pow1', 'on') -%} light.turn_on {%- else -%} light.turn_off {%- endif %}"
+        entity_id: light.led_strip_light2
+
+#########################################################
+#                                                       #
+#            END OF CONFIGURATION FILE                  #
+#                                                       #
+#########################################################

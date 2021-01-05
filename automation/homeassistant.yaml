@@ -45,14 +45,13 @@
     trigger:
       platform: state
       entity_id:
-        - sensor.adguard
+        - sensor.esphome
         - sensor.gdrivebackup
         - sensor.mosquitto
         - sensor.nut
         - sensor.rpcshutdown
         - sensor.samba
         - sensor.ssh
-        - sensor.unificontroller
         - sensor.vscode
       from: started
       to: stopped
@@ -72,8 +71,6 @@
     initial_state: false
     trigger:
       - platform: template
-        value_template: "{{state_attr('sensor.adguard', 'version') != state_attr('sensor.adguard', 'version_latest')}}"
-      - platform: template
         value_template: "{{state_attr('sensor.gdrivebackup', 'version') != state_attr('sensor.gdrivebackup', 'version_latest')}}"
       - platform: template
         value_template: "{{state_attr('sensor.mosquitto', 'version') != state_attr('sensor.mosquitto', 'version_latest')}}"
@@ -83,8 +80,6 @@
         value_template: "{{state_attr('sensor.samba', 'version') != state_attr('sensor.samba', 'version_latest')}}"
       - platform: template
         value_template: "{{state_attr('sensor.ssh', 'version') != state_attr('sensor.ssh', 'version_latest')}}"
-      - platform: template
-        value_template: "{{state_attr('sensor.unificontroller', 'version') != state_attr('sensor.unificontroller', 'version_latest')}}"
       - platform: template
         value_template: "{{state_attr('sensor.vscode', 'version') != state_attr('sensor.vscode', 'version_latest')}}"
     action:

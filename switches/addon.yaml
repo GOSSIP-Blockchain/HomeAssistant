@@ -12,16 +12,16 @@
   - platform: template
     switches:
 
-      adguard:
-        value_template: "{{ is_state('sensor.adguard', 'started') }}"
+      esphome:
+        value_template: "{{ is_state('sensor.esphome', 'started') }}"
         turn_on:
           service: hassio.addon_start
           data:
-            addon: a0d7b954_adguard
+            addon: a0d7b954_esphome
         turn_off:
           service: hassio.addon_stop
           data:
-            addon: a0d7b954_adguard
+            addon: a0d7b954_esphome
 
       gdrivebackup:
         value_template: "{{ is_state('sensor.gdrivebackup', 'started') }}"
@@ -88,17 +88,6 @@
           service: hassio.addon_stop
           data:
             addon: a0d7b954_ssh
-
-      unificontroller:
-        value_template: "{{ is_state('sensor.unificontroller', 'started') }}"
-        turn_on:
-          service: hassio.addon_start
-          data:
-            addon: a0d7b954_unifi
-        turn_off:
-          service: hassio.addon_stop
-          data:
-            addon: a0d7b954_unifi
 
       vscode:
         value_template: "{{ is_state('sensor.vscode', 'started') }}"

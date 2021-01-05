@@ -55,6 +55,30 @@
 
 #########################################################
 #                                                       #
+#             Turn off Amp When Idle                    #
+#                                                       #
+#########################################################
+
+  - alias: "Turn off Amp When Idle"
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: media_player.rx_v481_dccace_main
+        to: 'idle'
+        for:
+          minutes: 5
+    action:
+      - service: notify.mobile_app_adams_iphone
+        data_template:
+          message: 'The TV is pulling {{ states("sensor.pow2_power") }} watts, the receiver is {{states("media_player.rx_v481_dccace_main") }}'
+          data:
+            push:
+              badge: 0
+              category: 'mediacenter'
+
+
+#########################################################
+#                                                       #
 #            END OF CONFIGURATION FILE                  #
 #                                                       #
 #########################################################

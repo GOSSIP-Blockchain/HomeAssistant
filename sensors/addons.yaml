@@ -8,9 +8,10 @@
 ####################################################
 
 #https://www.home-assistant.io/integrations/rest/
+
   - platform: rest
-    resource: http://192.168.1.24:8123/api/hassio/addons/a0d7b954_adguard/info
-    name: adguard
+    resource: http://192.168.1.24:8123/api/hassio/addons/a0d7b954_esphome/info
+    name: esphome
     value_template: '{{ value_json.data.state }}'
     scan_interval: 60
     headers:
@@ -94,19 +95,6 @@
     headers:
       Authorization: !secret llt
       Content-Type: application/json    
-    json_attributes_path: "$.data"
-    json_attributes:
-      - version
-      - version_latest
-
-  - platform: rest
-    resource: http://192.168.1.24:8123/api/hassio/addons/a0d7b954_unifi/info
-    name: unificontroller
-    value_template: '{{ value_json.data.state }}'
-    scan_interval: 60
-    headers:
-      Authorization: !secret llt
-      Content-Type: application/json
     json_attributes_path: "$.data"
     json_attributes:
       - version

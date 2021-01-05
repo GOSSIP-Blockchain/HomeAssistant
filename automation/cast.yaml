@@ -25,9 +25,6 @@
             - condition: state
               entity_id: input_boolean.guest
               state: 'on'
-            - condition: state
-              entity_id: input_boolean.vacation
-              state: 'off'
     action:
       - service: hassio.addon_stdin
         data:
@@ -37,7 +34,7 @@
       - service: hassio.addon_stdin
         data:
           addon: a0d7b954_ssh
-          input: catt -d "Family Room Display" cast_site http://192.168.1.24:8123/lovelace/googlehomehub
+          input: catt -d "Family Room Display" cast_site http://192.168.1.24:8123/lovelace-cast/default_view
       - delay: 00:00:10
       - service: hassio.addon_stdin
         data:

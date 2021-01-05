@@ -1,0 +1,22 @@
+#########################################################
+#                                                       #
+#                     FIRE SENSOR                       #
+#                                                       #
+#########################################################
+
+- alias: Fire Sensor
+  trigger:
+    platform: mqtt
+    topic: firesensor
+    payload: "FIRE DETECTED!"
+  action:
+    - service: notify.mobile_app_adams_iphone
+      data:
+        title: "Fire Alarm"
+        message: "The smoke detectors are triggered at home"
+
+#########################################################
+#                                                       #
+#            END OF CONFIGURATION FILE                  #
+#                                                       #
+#########################################################
