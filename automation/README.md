@@ -156,13 +156,6 @@ __[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/
 
 * Send my Wife and I a morning e-mail with the weather for the day current and upcoming holidays/birthdays and a random picture of the two of us. The pictures folder in my data directory has a bunch of pictures each with a unique number as the file name.
 
-### Network.yaml Automation:
-__[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/network.yaml)__
-
-* Notify if an item in my netwok has issues (Based on Ubiquiti Unifi Custom Component)
-* Notify if the Unifi Gateway has an alert
-* Notify if one of my Unifi devices has a firmware update available
-
 ### OKtowake.yaml Automations
 __[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/oktowake.yaml)__
 
@@ -182,16 +175,17 @@ __[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/
 * Notify me if the Desktop PC is turned on while away
 * Notify me if there is a failed login attempt to the HA front end
 
-### SpaceX.yaml Automations:
-__[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/spacex.yaml)__
-
-* Send me a notification 1 hour before a SpaceX launch with some general information about the launch
-
 ### UPS.yaml Automations:
 __[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/ups.yaml)__
 
 * Notify me if there is a power outage
 * Notify me when power is restored
+
+### Workstation.yaml Automations:
+__[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/workstation.yaml)__
+
+* Turn on my headphone amplifier and monitors before I sit down at my workstation each weekday
+* Turn on/off the LED strip behind my monitors when the swtich for the monitors turns on/off
 
 ### Zwave.yaml Automations:
 __[File Link](https://github.com/SilvrrGIT/HomeAssistant/blob/master/automation/zwave.yaml)__
