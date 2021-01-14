@@ -61,7 +61,7 @@ homeassistant:
     - type: homeassistant
     - type: trusted_networks
       trusted_networks:
-        - 192.168.1.14
+        - 192.168.1.0/24
 
 #https://home-assistant.io/components/http/
 http:
